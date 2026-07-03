@@ -26,6 +26,7 @@ const display = document.querySelector('.display');
 let a = 0;
 let operator = null;
 let b = null;
+let shouldResetDisplay = false; //delay the resetDisplay
 
 function reset(){
     a = 0;
@@ -41,6 +42,10 @@ for(let i = 0;i < buttonValues.length;i++){
 
     button.addEventListener('click',()=>{
         if(numbers.includes(value)){
+            if(shouldResetDisplay){
+                display.value = '';
+                shouldResetDisplay = false;
+            }
             if(value == '.'){
                 if(display.value != '' && display.value.include('.')){ //avoid multiple '.'
                     display.value += value;
@@ -70,6 +75,7 @@ for(let i = 0;i < buttonValues.length;i++){
         }
 
         if(rightSymbols.includes(value)){
+            
             if(operator == null){
                 if(value !== '='){
                     a = Number(display.value);
@@ -85,6 +91,7 @@ for(let i = 0;i < buttonValues.length;i++){
                     operator = value;
                 }
             }
+            shouldResetDisplay = true; //after operators perform once, then shouldresetdisplay and can't calculate until press number
         }
     })    
         //styling color
@@ -103,6 +110,9 @@ for(let i = 0;i < buttonValues.length;i++){
 }
 
 function calculate() {
+    if(shouldResetDisplay){
+        return;
+    };
     b = Number(display.value);
     if(operator == '+'){display.value = a+b};
     if(operator == '-'){display.value = a-b};
