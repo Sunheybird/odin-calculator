@@ -86,17 +86,15 @@ for(let i = 0;i < buttonValues.length;i++){
                 }
             }
         }
-
-            
-
     })
+    document.querySelector('.button').appendChild(button);
 }
 
 function calculate() {
-    b = Number(display.value)
+    b = Number(display.value);
     if(operator == '+'){display.value = a+b};
     if(operator == '-'){display.value = a-b};
     if(operator == '×'){display.value = a*b};
     if(operator == '÷'){display.value = a/b};
-    a = Number(display.value)
+    a = Number(display.value);
 };
