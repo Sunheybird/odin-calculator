@@ -61,7 +61,7 @@ for(let i = 0;i < buttonValues.length;i++){
             }
             if(value == '+/-'){
                 if(display.value != '' && display.value != '0'){
-                    display.value = Number(display.value)*(-1);
+                    display.value = Number(display.value)*(-1); //different with the tutorial
                 }
             }
             if(value == '%'){
@@ -70,8 +70,33 @@ for(let i = 0;i < buttonValues.length;i++){
         }
 
         if(rightSymbols.include(value)){
-
+            if(operator == null){
+                if(value !== '='){
+                    a = Number(display.value);
+                    operator = value;                
+                }
+            }
+            else{
+                calculate();
+                if(value == '='){
+                    reset();
+                }
+                else{
+                    operator = value;
+                }
+            }
         }
+
+            
 
     })
 }
+
+function calculate() {
+    b = Number(display.value)
+    if(operator == '+'){display.value = a+b};
+    if(operator == '-'){display.value = a-b};
+    if(operator == '×'){display.value = a*b};
+    if(operator == '÷'){display.value = a/b};
+    a = Number(display.value)
+};
