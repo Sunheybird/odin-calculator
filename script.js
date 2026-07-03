@@ -40,7 +40,7 @@ for(let i = 0;i < buttonValues.length;i++){
     button.classList = value;
 
     button.addEventListener('click',()=>{
-        if(numbers.include(value)){
+        if(numbers.includes(value)){
             if(value == '.'){
                 if(display.value != '' && display.value.include('.')){ //avoid multiple '.'
                     display.value += value;
@@ -54,7 +54,7 @@ for(let i = 0;i < buttonValues.length;i++){
             }
         }
 
-        if(topSymbols.include(value)){
+        if(topSymbols.includes(value)){
             if(value == 'AC'){
                 display.value = ''; //reset the look
                 reset(); //reset the function
@@ -69,7 +69,7 @@ for(let i = 0;i < buttonValues.length;i++){
             }
         }
 
-        if(rightSymbols.include(value)){
+        if(rightSymbols.includes(value)){
             if(operator == null){
                 if(value !== '='){
                     a = Number(display.value);
@@ -86,8 +86,20 @@ for(let i = 0;i < buttonValues.length;i++){
                 }
             }
         }
-    })
-    document.querySelector('.button').appendChild(button);
+    })    
+        //styling color
+        if(rightSymbols.includes(value)){
+            button.style.backgroundColor = '#FF9500';
+        }
+        else if(topSymbols.includes(value)){
+            button.style.backgroundColor = '#D4D4D2';
+            button.style.color = '#1C1C1C'
+        }
+        if(value == '0'){
+            button.style.width = '200px';
+            button.style.gridColumn = 'span 2'
+        }
+    document.querySelector('.buttons').appendChild(button);
 }
 
 function calculate() {
