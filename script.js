@@ -65,7 +65,7 @@ for(let i = 0;i < buttonValues.length;i++){
 
         if(topSymbols.includes(value)){
             if(value == 'AC'){
-                display.value = ''; //reset the look
+                display.value = '0'; //reset the look
                 reset(); //reset the function
             }
             if(value == '+/-'){
