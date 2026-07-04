@@ -52,15 +52,12 @@ for(let i = 0;i < buttonValues.length;i++){
                     display.value += value;
                 }
             }
+            else if(display.value == '0'){
+                    display.value = value; //this is hard, avoid multiple 0. It means 0 = reset at first.                
+            }            
             else{ //numbers
                 display.value += value;
             }            
-            if(display.value == '0'){ //should not use else if, it's value and display.value, it's different.
-                if(value !== '.'){
-                    display.value = value; //this is hard, avoid multiple 0. It means 0 = reset at first.                
-                }
-            }
-
         }
 
         if(topSymbols.includes(value)){
