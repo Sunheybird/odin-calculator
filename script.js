@@ -27,6 +27,7 @@ let a = 0;
 let operator = null;
 let b = null;
 let shouldResetDisplay = false; //delay the resetDisplay
+display.value = '0';
 
 function reset(){
     a = 0;
@@ -47,16 +48,19 @@ for(let i = 0;i < buttonValues.length;i++){
                 shouldResetDisplay = false;
             }
             if(value == '.'){
-                if(display.value != '' && display.value.include('.')){ //avoid multiple '.'
+                if(display.value != '' && !display.value.includes('.')){ //avoid multiple '.'
                     display.value += value;
                 }
             }
-            else if(display.value == '0'){
-                display.value = value; //this is hard, avoid multiple 0. It means 0 = reset at first.
-            }
             else{ //numbers
                 display.value += value;
+            }            
+            if(display.value == '0'){ //should not use else if, it's value and display.value, it's different.
+                if(value !== '.'){
+                    display.value = value; //this is hard, avoid multiple 0. It means 0 = reset at first.                
+                }
             }
+
         }
 
         if(topSymbols.includes(value)){
